@@ -61,13 +61,7 @@ def sleepHelp(message):
         bob = random.choice(open("bobross.txt").readlines())
         msg = "Here you go, {0.author.mention}!\n".format(message) + f"Sleep well. :zzz:\n{bob}"  
     return msg           
-
-'''
---------------------------------------
-------------BEGIN EVENTS--------------
---------------------------------------
-'''
-
+  
 # Decorator assigns this event.        
 @bot.event   
 # Generic on_message function. Catches any messages in any channel that 
@@ -89,10 +83,6 @@ async def on_message(message):
     if message.author.bot == False and "THANKS" in message.content.upper() and "DEMO" in message.content.upper():
         msg = "No problem, {0.author.mention}.".format(message)
         await message.channel.send(msg)      
-        
-    if message.author.bot == False and "THE TRAGEDY OF" in message.content.upper():
-        msg = "I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. `Ironic.` He could save others from death, but not himself.".format(message)
-        await message.channel.send(msg)
         
     if message.author.bot == False and "DEMO" in message.content.upper():
         msg = sleepHelp(message)
@@ -157,15 +147,6 @@ async def on_ready():
     print('---Status---')
     print("Ready!")
     bot.loop.create_task(status_task())
-
-'''
---------------------------------------
-------------BEGIN COMMANDS------------
---------------------------------------
-
-Commands can be implemented with a class structure.
-
-'''
 
 # Creates objects that are capable of rolling either a die with
 # user-defined sides or between 1 and some other user-defined number.
@@ -349,7 +330,7 @@ class Math(commands.Cog):
             
             
         else:
-            msg = '{0.author.mention}, that number is too large. Python is a interpreted language. It takes time to calculate large numbers because of this. Please choose a smaller number. Consult ~help for the size limit.'.format(ctx)
+            msg = '{0.author.mention}, that number is too large. Consult !help for the size limit.'.format(ctx)
             await ctx.send(msg)        
             
     @commands.command(name='midpnt', help='calculate the midpoint of two points.')
@@ -489,7 +470,7 @@ async def hangman(ctx):
         hangmanActive = True
         if hangmanDMActive != True:
             hangmanDMActive = True        
-        await ctx.send("It's time for some Hangman {0.author.mention}".format(ctx) +  "! Message me the word you would like to use. You have one minute to choose your word. Choose wisely. Call '~guess 'your guess here'' to guess a letter. You can guess spaces by typing 'space' instead of a letter. No hyphens my guy. Good luck!")
+        await ctx.send("It's time for some Hangman {0.author.mention}".format(ctx) +  "! Message me the word you would like to use. You have one minute to choose your word. Choose wisely. Call '!guess 'your guess here'' to guess a letter. You can guess spaces by typing 'space' instead of a letter. No hyphens. Good luck!")
         hangmanUserId = ctx.author.id
         user = bot.get_user(hangmanUserId)
         try:
